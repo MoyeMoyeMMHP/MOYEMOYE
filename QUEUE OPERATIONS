@@ -1,0 +1,108 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX_SIZE 100
+typedef struct{
+	int items[MAX_SIZE];
+	int front;
+	int rear;
+}Queue;
+void intiqueue(Queue *queue)
+{
+	queue->front=-1;
+	queue->rear=-1;
+}
+int isempty(Queue *queue)
+{
+	return (queue->front==-1&&queue->rear==-1);
+	
+}
+int isfull(Queue *queue)
+{
+	return (queue->rear==MAX_SIZE-1);
+}
+void enqueue(Queue *queue,int val)
+{
+	if (isfull(queue))
+	{
+		printf("The Queue is full, can't enqueue %d",val);
+		return;
+	}
+	if(isempty(queue))
+	{
+		queue->front=0;
+	}
+	queue->rear++;
+	queue->items[queue->rear]=val;
+	printf("Enqueued %d",val);
+		
+}
+int dequeue(Queue *queue)
+{
+	if(isempty(queue))
+	{
+		printf("The Queue is empty, can't dequeue an empty queue");
+		return -1;
+	}
+	int remval=queue->items[queue->front];
+	if(queue->front==queue->rear)
+	{
+		queue->front=-1;
+		queue->rear=-1;
+	}
+	else
+	{
+		queue->front++;
+	}
+	printf("Dequeued %d",remval);
+	return remval;
+}
+void printqueue(Queue *queue)
+{
+	if(isempty(queue))
+	{
+		printf("The Queue is empty.\n");
+		return;
+	}
+	printf("Current Queue: \n");
+	for(int i=queue->front;i<=queue->rear;i++)
+	{
+		printf("%d ",queue->items[i]);
+	}
+	printf("\n");
+}
+int main()
+{
+	Queue queue;
+	intiqueue(&queue);
+	int choic,value;
+	do{
+		printf("\nQueue Operations:");
+		printf("\n1.Enqueue:");
+		printf("\n2.Dequeue:");
+		printf("\n3.Print the Queue:");
+		printf("\n4.Exit");
+		printf("\nEnter your choice (1 or 2 or 3 or 4): ");
+		scanf("%d",&choic);
+		switch(choic)
+		{
+			case 1:
+				printf("Enter the value to enqueue: \n");
+				scanf("%d",&value);
+				enqueue(&queue,value);
+				break;
+			case 2:
+				dequeue(&queue);
+				break;
+			case 3:
+				printqueue(&queue);
+				break;
+			case 4:
+				printf("\nExiting...");
+				break;
+			default:
+				printf("Invalid choice. Please enter again!");
+		}
+		}while(choic!=4);
+			printf("The Final Queue: \n");
+			printqueue(&queue);
+	}
