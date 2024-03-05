@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+int countNodes(struct Node* head) {
+    int count = 0;
+    struct Node* current = head;
+    while (current != NULL) {
+        count++;
+        current = current->next;
+    }
+    return count;
+}
+
+int main() {
+    struct Node* head = (struct Node*)malloc(sizeof(struct Node));
+    head->data = 2;
+    head->next = (struct Node*)malloc(sizeof(struct Node));
+    head->next->data = 5;
+    head->next->next = (struct Node*)malloc(sizeof(struct Node));
+    head->next->next->data = 8;
+    head->next->next->next = (struct Node*)malloc(sizeof(struct Node));
+    head->next->next->next->data = 3;
+    head->next->next->next->next = (struct Node*)malloc(sizeof(struct Node));
+    head->next->next->next->next->data = 9;
+    head->next->next->next->next->next = (struct Node*)malloc(sizeof(struct Node));
+    head->next->next->next->next->next->data = 7;
+    head->next->next->next->next->next->next = NULL;
+
+    struct Node* current = head;
+    while (current != NULL) {
+        printf("%d ", current->data);
+        current = current->next;
+    }
+    printf("\n");
+
+    int res = countNodes(head);
+    printf("Total no. of nodes in the above linked list: %d\n", res);
+
+    return 0;
+}
