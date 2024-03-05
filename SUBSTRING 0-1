@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char st1[100],st2[100],nm1[100],nm2[100];
+	printf("Enter the name of first string:\n ");
+	fgets(nm1,sizeof(nm1),stdin);
+	if(nm1[strlen(nm1)-1]=='\n')
+	{
+		nm1[strlen(nm1)-1]='\0';
+	}
+	printf("Enter the first string:\n ");
+	fgets(st1,sizeof(st1),stdin);
+	if(st1[strlen(st1)-1]=='\n')
+	{
+		st1[strlen(st1)-1]='\0';
+	}	
+	printf("Enter the name of Second string:\n ");
+	fgets(nm2,sizeof(nm2),stdin);
+	if(nm2[strlen(nm2)-1]=='\n')
+	{
+		nm2[strlen(nm2)-1]='\0';
+	}
+	printf("Enter the second string:\n ");
+	fgets(st2,sizeof(st2),stdin);
+	if(st2[strlen(st2)-1]=='\n')
+	{
+		st2[strlen(st2)-1]='\0';
+	}
+	if(strstr(st1,st2)!=NULL)
+	{
+		printf("Output: 0");
+	}
+	else
+	{
+		printf("Output: -1");
+	}
+}
