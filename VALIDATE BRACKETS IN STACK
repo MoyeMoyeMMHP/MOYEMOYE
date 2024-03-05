@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<stdbool.h>
+#include<string.h>
+#include<stdlib.h>
+#define MAX_SIZE 100
+bool isvalid(const char *input)
+{
+	char stack[MAX_SIZE];
+	int top=-1;
+	for(int i=0;input[i]!='\0';++i)
+	{
+		int c=input[i];
+		if(c=='('||c=='{'||c=='[')
+		{
+			stack[++top]=c;
+		}
+		else if(c==')'||c=='}'||c==']')
+		{
+			if(top<0||(c==')'&&stack[top--]!='(')||(c=='}'&&stack[top--]!='{')||(c==']'&&stack[top--]!='['))
+			{
+				return false;
+			}
+		}
+		
+	}
+	return top==-1;
+}
+int main()
+{
+	char input[MAX_SIZE];
+	printf("Enter the Brackets:\n ");
+	fgets(input,sizeof(input),stdin);
+	int l=strlen(input);
+	if(input[l-1]=='\n')
+	{
+		input[l-1]='\0';
+	}
+	printf("Output: %s\n",isvalid(input)?"true":"false");
+}
